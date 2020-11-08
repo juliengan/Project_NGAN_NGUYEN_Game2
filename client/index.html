@@ -14,7 +14,135 @@
         <!--<link rel="stylesheet" href="/css/memory.css">-->
     </head>
     <body>
+
         <div id="app">
+            <div class="header">
+                <h1 >Game & Chill</h1>
+                <p>welcome to the retro game center <br /> if you like retro game do not hesitate to create an acompte and play with your friends</p>
+            </div>
+    
+            <div class="topnav">
+                <button class="open-button"style="float : right"  onclick="openForm()">Register</button>
+    
+                <div class="form-popup" id="myForm">
+    
+                    <form action="/action_page.php" class="form-container">
+                        <h1>Register</h1>
+    
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Enter Email" name="email" required>
+    
+                        <label for="psw"><b>Pseudo</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+                        <button type="submit" class="btn">Login</button>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    </form>
+    
+                </div>
+                <router-link to='/memory'>Memory</router-link>
+                <a href="#contact">Reviews</a>
+                <router-link to='/pacman'>Pacman</router-link>
+                <router-link to='/'>Home</router-link>
+                <!--<router-link to='/register'>Register</router-link>-->
+    
+                <div class="login-container">
+    
+    
+    
+    
+                    <form action="/action_page.php">
+                        <input type="text" placeholder="Pseudo" name="username">
+                        <input type="text" placeholder="Password" name="psw">
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+    
+    
+            <main>
+                <router-view
+                  :games="games"
+                  :comments="comments"
+                  @add-user="addUser"
+                  @login-user="loginUser"
+                  @add-comment="addComment"
+                  @delete-comment="deleteComment"
+                  @update-comment="updateComment"
+                  
+                  @start-game="startGame"
+                  @flip-card="flipCard"
+                  @not-match='notMatch'
+                  @match='match'
+                  @check-match='checkMatch'
+                  @reset-board='resetBoard'
+                  @random-cards='randomCards'
+                ></router-view>  
+              </main>
+            
+    
+    
+    
+            <div class="row">
+                <div class="leftcolumn">
+                    <div class="card">
+                        <h2>PacMan</h2>
+                        <h5>Title description, Dec 7, 2017</h5>
+                        <div class="pacmanimg" style="height:200px;">Image</div>
+                        <p>Some text..</p>
+                        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                    </div>
+                    <div class="card">
+                        <h2>Memory</h2>
+                        <h5>Title description, Sep 2, 2017</h5>
+                        <div class="fakeimg" style="height:200px;">Image</div>
+                        <p>Some text..</p>
+                        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                    </div>
+                    
+                </div>
+                <div class="rightcolumn">
+                    <div class="card">
+                        <h2>About Me</h2>
+                        <div class="fakeimg" style="height:100px;">Image</div>
+                        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+                    </div>
+                    <div class="card">
+                        <h3>Popular Post</h3>
+                        <div class="fakeimg"><p>Image</p></div>
+                        <div class="fakeimg"><p>Image</p></div>
+                        <div class="fakeimg"><p>Image</p></div>
+                    </div>
+                    <div class="card">
+                        <h3>Follow Me</h3>
+                        <p>Some text..</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="footer">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis ducimus nemo quo totam neque quis soluta nisi obcaecati aliquam saepe dicta adipisci blanditiis quaerat earum laboriosam accusamus nesciunt! Saepe ex maxime enim asperiores nisi. Obcaecati nostrum nobis laudantium aliquam commodi veniam magni similique ullam quis pariatur voluptatem harum id error.</p>
+    
+            </div>
+        </div>
+    
+    
+    
+    
+        <script>
+            function openForm() {
+            document.getElementById("myForm").style.display = "block";
+            }
+    
+            function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+            }
+            </script>
+
+        <!--<div id="app">
           <header>
             <h1>Game and chill</h1>
             <div class="topnav">
@@ -47,28 +175,7 @@
               </div>
               </div>
           </body>-->
-          <main>
-            <router-view
-              :games="games"
-              :comments="comments"
-              @add-user="addUser"
-              @login-user="loginUser"
-              @add-comment="addComment"
-              @delete-comment="deleteComment"
-              @update-comment="updateComment"
-              
-              @start-game="startGame"
-              @flip-card="flipCard"
-              @not-match='notMatch'
-              @match='match'
-              @check-match='checkMatch'
-              @reset-board='resetBoard'
-              @random-cards='randomCards'
-            ></router-view>
           
-
-            
-          </main>
 
           <footer>
             <p>About us</p>
@@ -200,5 +307,241 @@
         background-image: url(https://media4.s-nbcnews.com/j/newscms/2018_24/2462811/180612-memory-ideas-tricks-devices-ac-451p_d28ab24565f569bce0e8d5a1b052eab2.fit-760w.jpg);
         
       }
+
+      body {
+        font-family: Arial;
+        padding: 10px;
+        background: #111;
+    }
+
+    /* Header/Blog Title */
+    .header {
+        padding: 30px;
+        text-align: center;
+        background-color: #111;
+        color: white;
+        
+    }
+
+        .header h1 {
+            font-size: 80px;
+            font-family: 'OCR A';
+        
+        text-shadow: 4px 3px 0px #1a2f80, 9px 8px 0px rgba(0,0,0,0.15);
+    
+        }
+        .header p {
+            font-family: 'OCR A';
+            color: #1a2f80;
+            border : solid;
+            border-style : dashed;
+            padding : 10px;
+        }
+
+    /* Style the top navigation bar */
+    .topnav {
+        overflow: hidden;
+        background-color: #
+    }
+
+        /* Style the topnav links */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family : 'OCR A';
+        }
+
+            /* Change color on hover */
+            .topnav a:hover {
+                background-color: #1a2f80;
+                color: white;
+            }
+
+        /* Style the input container */
+        .topnav .login-container {
+            float: right;
+        }
+
+        /* Style the input field inside the navbar */
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border-bottom: solid;
+           
+            width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
+            background : #111;
+            color:white;
+        }
+
+        /* Style the button inside the input container */
+        .topnav .login-container button {
+            float: right;
+            padding: 6px;
+            margin : 5px;
+            margin-top: 15px;
+            margin-right: 16px;
+            background: #ddd;
+            font-size: 10px;
+            border: none;
+            cursor: pointer;
+            font-family : 'OCR A';
+        }
+    .open-button {
+        float: right;
+        padding: 6px;
+        
+        margin-top: 15px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 10px;
+        border: none;
+        cursor: pointer;
+        font-family: 'OCR A';
+    }
+        }
+
+            .topnav .login-container button:hover {
+                background: #ccc;
+            }
+
+    /* Create two unequal columns that floats next to each other */
+    /* Left column */
+    .leftcolumn {
+        float: left;
+        width: 75%;
+    }
+
+    /* Right column */
+    .rightcolumn {
+        float: left;
+        width: 25%;
+        background-color: #111;
+        padding-left: 20px;
+    }
+
+    /* Fake image */
+    .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .pacmanimg {
+        background-image: url("https://retrogaming.altervista.org/wp-content/uploads/2018/10/pacamn.jpg");
+        opacity: 0.6;
+        filter: alpha(opacity=40);
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Add a card effect for articles */
+    .card {
+        background-color: black;
+        padding: 20px;
+        margin-top: 20px;
+        color: #696969;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Footer */
+    .footer {
+        width: 100%;
+        height: 350px;
+        background: #111;
+        left: 0;
+        bottom: 0;
+    }
+
+        .footer p {
+            color: #696969;
+            column-count: 2;
+            column-gap: 50px;
+            font-size: em;
+            font-weight: 300;
+        }
+
+    /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 800px) {
+        .leftcolumn, .rightcolumn {
+            width: 100%;
+            padding: 0;
+        }
+    }
+
+    /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+    @media screen and (max-width: 400px) {
+        .topnav a {
+            float: none;
+            width: 100%;
+        }
+    }
+
+       /* The popup form - hidden by default */
+    .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+    }
+
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+            /* When the inputs get focus, do something */
+            .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+        }
+
+
 
 </style>
