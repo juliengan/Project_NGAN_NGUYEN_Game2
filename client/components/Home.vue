@@ -33,6 +33,36 @@
       </div>
       </div>
     </game>
+
+
+<comment v-for="comment in comments" :key="comment.id" class ="body" >
+      <div id="pumpmyshopbag">
+      <div class="game-content" v-if="editinggame.id !== comment.id">
+        <div class="game-title">
+          <h2>{{ comment.title }}</h2><br>
+          <h3> Rate : {{comment.rate}} </h3>
+          <div class ="boutons">
+          
+          <button >Publish</button>
+            </div>
+        </div>
+        <p>{{ comment.description }}</p>
+      </div>
+      <div class="game-content" v-else>
+        <div class="game-title">
+          <h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2>
+          
+        </div>
+        <p><textarea v-model="editinggame.description"></textarea></p>     
+          <div>
+            <button @click="sendEditgame()">Valider</button>
+            <button @click="abortEditgame()">Annuler</button>
+          </div>
+  
+      </div>
+      </div>
+    </comment>
+
   
     <form @submit.prevent="addcomment">
       <h2>Comment</h2>
