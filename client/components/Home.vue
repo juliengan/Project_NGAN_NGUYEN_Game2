@@ -197,8 +197,12 @@ game{
   border-color : black;
   margin-bottom : 20px;
   padding : 5px;
-  box-shadow: 8px 8px 0px #aaa;
+  box-shadow: 8px 8px 12px rgb(54, 31, 31);
   text-align : center;
+  opacity: 0.5;
+  }
+  game:hover{
+    opacity: 0.9;
   }
 .boutons{
 display : flex;
