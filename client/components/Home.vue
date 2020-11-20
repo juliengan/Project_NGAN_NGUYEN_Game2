@@ -38,42 +38,52 @@
     </game>
     </div>
 
+<!--comments-->
+              <div class="row">
+                <div class="pacmanimg" style="height:200px;"></div>
+                <comment v-for="comment in comments" :key="comment.id" class ="body" >
+                <div class="leftcolumn">
+                  <div class="card">
+                    <div class="comment-content" v-if="editinggame.id !== comment.id">
+                        <p>{{ comment.title }}</p><br></div>
+                        <p> Rate : {{comment.rate}} </p>
+                      <p>{{ comment.description }}</p>
+                  </div>
+                  </comment>
+                  <form @submit.prevent="addcomment">
+                    <h2>Comment</h2>
+                    <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
+                    <input type="number" v-model="newcomment.rate" placeholder="Rate over 6" required>
+                    <textarea type="text" v-model="newcomment.description" required></textarea>
+                    <button type="submit">Publish</button>
+                  </form>
+               </div>
+ 
 
-<div class="comments" >
-<comment v-for="comment in comments" :key="comment.id" class ="body" >
-      <div id="pumpmyshopbag">
-      <div class="comment-content" v-if="editinggame.id !== comment.id">
-        <div class="comment-title">
-          <h2>{{ comment.title }}</h2><br>
-          <h3> Rate : {{comment.rate}} </h3>
-        </div>
-        <p>{{ comment.description }}</p>
-      </div>
-      <div class="comment-content" v-else>
-        <div class="comment-title">
-          <h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2>
-          
-        </div>
-        <p><textarea v-model="editinggame.description"></textarea></p>     
-          <div>
-            <button @click="sendEditgame()">Valider</button>
-            <button @click="abortEditgame()">Annuler</button>
-          </div>
-  
-      </div>
-      </div>
-    </comment>
-</div>
 
-  
-    <form @submit.prevent="addcomment">
-      <h2>Comment</h2>
-      <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
-      <input type="number" v-model="newcomment.rate" placeholder="Rate over 6" required>
-      <textarea type="text" v-model="newcomment.description" required></textarea>
-      <button type="submit">Publish</button>
-    </form>
-  </div>
+
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>About Me</h2>
+            <div class="fakeimg" style="height:100px;">Image</div>
+                <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+        </div>
+
+        <div class="card">
+            <h3>Popular Post</h3>
+                            <div class="fakeimg"><p>Image</p></div>
+                            <div class="fakeimg"><p>Image</p></div>
+                            <div class="fakeimg"><p>Image</p></div>
+                        </div>
+                        <div class="card">
+                            <h3>Follow Me</h3>
+                            <p>Some text..</p>
+                        </div>
+                    </div>
+                </div>
+                
+
+ <!-- </div>-->
 </template>
 
 <script>
@@ -111,6 +121,53 @@ $(".btn-group-lg").on("click", function() {
 </script>
 
 <style scoped>
+/*test comments template thao*/
+/* Create two unequal columns that floats next to each other */
+    /* Left column */
+    .leftcolumn {
+        float: left;
+        width: 75%;
+    }
+
+    /* Right column */
+    .rightcolumn {
+        float: left;
+        width: 25%;
+        background-color: black;
+        padding-left: 20px;
+    }
+
+    /* Fake image */
+    .fakeimg {
+        background-color: #aaa;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .pacmanimg {
+        background-image: url("https://www.rts.ch/2019/12/05/10/57/1784333.image/16x9/scale/width/400");
+        opacity: 0.6;
+        filter: alpha(opacity=40);
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* Add a card effect for articles */
+    .card {
+        background-color: black;
+        padding: 20px;
+        margin-top: 20px;
+        color: #696969;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    } 
+
+
 .games, .comments{
   display: flex;
   flex-wrap: wrap;
