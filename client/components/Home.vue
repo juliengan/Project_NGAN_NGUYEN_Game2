@@ -1,27 +1,31 @@
 <template>
   <div class="center" >
+    <div class="games" >
     <game v-for="game in games" :key="game.id" class ="body" >
       <div id="pumpmyshopbag">
+      <!--Image-->
       <div class="game-img">
         <div :style="{ backgroundImage: 'url(' + game.image + ')' }">
         </div>
       </div>
+
+      <!--Content-->
       <div class="game-content" v-if="editinggame.id !== game.id">
         <div class="game-title">
           <h2>{{ game.title }}</h2><br>
           <h3> Your best score : {{game.score}} points</h3>
           <div class ="boutons">
-          
-          <button >Play</button>
-          <button>Rate</button>
-            </div>
+            <button >Play</button>
+            <button>Rate</button>
+          </div>
         </div>
         <p>{{ game.description }}</p>
       </div>
+
+      <!--Content else-->
       <div class="game-content" v-else>
         <div class="game-title">
           <h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2>
-          
         </div>
         <p><textarea v-model="editinggame.description"></textarea></p>     
           <input type="text" v-model="editinggame.image" placeholder="Lien vers l'image">
@@ -29,22 +33,20 @@
             <button @click="sendEditgame()">Valider</button>
             <button @click="abortEditgame()">Annuler</button>
           </div>
-  
+        </div>
       </div>
-      </div>
+      <!--end-->
     </game>
+    </div>
 
 
+<div class="comments" >
 <comment v-for="comment in comments" :key="comment.id" class ="body" >
       <div id="pumpmyshopbag">
       <div class="game-content" v-if="editinggame.id !== comment.id">
         <div class="game-title">
           <h2>{{ comment.title }}</h2><br>
           <h3> Rate : {{comment.rate}} </h3>
-          <div class ="boutons">
-          
-          <button >Publish</button>
-            </div>
         </div>
         <p>{{ comment.description }}</p>
       </div>
@@ -62,6 +64,7 @@
       </div>
       </div>
     </comment>
+</div>
 
   
     <form @submit.prevent="addcomment">
@@ -109,6 +112,19 @@ $(".btn-group-lg").on("click", function() {
 </script>
 
 <style scoped>
+.games, .comments{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+comment{
+  border-color : black;
+  margin-bottom : 5px;
+  padding : 5px;
+  border:solid white;
+  text-align : center;
+}
+
 h3,h2, p{
   color:aliceblue
 }
@@ -195,7 +211,7 @@ opacity: 1;
 }
 game{
   border-color : black;
-  margin-bottom : 20px;
+  margin-bottom : 5px;
   padding : 5px;
   box-shadow: 8px 8px 12px rgb(54, 31, 31);
   text-align : center;
@@ -232,7 +248,9 @@ background-color: #6d1500;
 #pumpmyshopbag{
    
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  }
+    /*height: 300px;
+    width: 300px;
+  */}
 
 .game-img {
   flex: 1;
