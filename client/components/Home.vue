@@ -29,15 +29,14 @@
 
 <!--comments-->
               <div class="row">
+                
                 <div class="pacmanimg" style="height:200px;"></div>
                 <comment v-for="comment in comments" :key="comment.id" class ="body" >
                   <div class="leftcolumn">
                     <div class="card">
-                      <div class="comment-content">
-                          <p>User : {{ comment.pseudo }} said </p></div>
-                          <p>{{ comment.title }}</p><br>
-                          <p> Rate : {{comment.rate}} </p>
-                       <p>{{ comment.description }}</p>
+                     <div class="comment-content">
+                          <p>User : {{ comment.pseudo }} said about {{ comment.title }} game :<p>{{ comment.description }}</p>
+                          <p> Rate : {{comment.rate}} </p></div>
                   </div>
                 </comment>
                   <form @submit.prevent="addcomment">
@@ -110,13 +109,13 @@ $(".btn-group-lg").on("click", function() {
     /* Left column */
     .leftcolumn {
         float: left;
-        width: 75%;
+        width: 70%;
     }
 
     /* Right column */
     .rightcolumn {
         float: left;
-        width: 25%;
+        width: 30%;
         background-color: black;
         padding-left: 20px;
     }
@@ -146,7 +145,7 @@ $(".btn-group-lg").on("click", function() {
 
     /* Clear floats after the columns */
     .row:after {
-        content: "";
+        /*content: "";*/
         display: table;
         clear: both;
     } 
@@ -156,21 +155,22 @@ $(".btn-group-lg").on("click", function() {
   display: flex;
   flex-wrap: wrap;
 }
-.comment-content h2,h3,p{
-  font-size: 20px;
-  font-family: 'OCR A';
-  text-shadow: 4px 3px 0px #1a2f80, 9px 8px 0px rgba(0,0,0,0.15);
+comment{
+   border:solid  #1a2f80;
 }
 
-comment{
+comment p{
   border-color : black;
   margin-bottom : 5px;
   padding : 5px;
-  border:solid  #1a2f80;
+ 
   text-align : center;
+  font-size: 14px;
+  font-family: 'OCR A';
+  
 }
 
-.game-content h2, p{
+game h2, p{
   color:aliceblue
 }
 
