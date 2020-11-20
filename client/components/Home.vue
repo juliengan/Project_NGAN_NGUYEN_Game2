@@ -7,22 +7,13 @@
       <div class="game-img"><div :style="{ backgroundImage: 'url(' + game.image + ')' }"></div></div>
 
       <!--Content-->
-      <div class="game-content" v-if="editinggame.id !== game.id">
+      <div class="game-content">
         <div class="game-title"><h2>{{ game.title }}</h2><br></div>
           <h3> Your best score : {{game.score}} points</h3>
           <div class ="boutons"><button >Play</button><button>Rate</button></div>
         <p>{{ game.description }}</p>
       </div>
 
-      <div class="game-content" v-else>
-        <div class="game-title"><h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2></div>
-        <p><textarea v-model="editinggame.description"></textarea></p>     
-          <input type="text" v-model="editinggame.image" placeholder="Lien vers l'image">
-          <div>
-            <button @click="sendEditgame()">Valider</button>
-            <button @click="abortEditgame()">Annuler</button>
-          </div>
-        </div>
       </div>
     </game>
     </div>
@@ -78,12 +69,14 @@ module.exports = {
   data () {
     return {
       newcomment: {
+        pseudo:'',
         title: '',
         description: '',
         rate: 0
       },
       editinggame: {
         id: -1,
+        pseudo:'',
         title: '',
         description: '',
         rate: 0
@@ -150,6 +143,10 @@ $(".btn-group-lg").on("click", function() {
         clear: both;
     } 
 
+
+input,textarea{
+  color:#ced1dd;
+}
 
 .games, .comments{
   display: flex;
