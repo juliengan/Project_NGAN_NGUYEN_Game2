@@ -4,28 +4,18 @@
     <game v-for="game in games" :key="game.id" class ="body" >
       <div id="pumpmyshopbag">
       <!--Image-->
-      <div class="game-img">
-        <div :style="{ backgroundImage: 'url(' + game.image + ')' }">
-        </div>
-      </div>
+      <div class="game-img"><div :style="{ backgroundImage: 'url(' + game.image + ')' }"></div></div>
 
       <!--Content-->
       <div class="game-content" v-if="editinggame.id !== game.id">
-        <div class="game-title">
-          <h2>{{ game.title }}</h2><br></div>
+        <div class="game-title"><h2>{{ game.title }}</h2><br></div>
           <h3> Your best score : {{game.score}} points</h3>
-          <div class ="boutons">
-            <button >Play</button>
-            <button>Rate</button>
-          </div>
+          <div class ="boutons"><button >Play</button><button>Rate</button></div>
         <p>{{ game.description }}</p>
       </div>
 
-      <!--Content else-->
       <div class="game-content" v-else>
-        <div class="game-title">
-          <h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2>
-        </div>
+        <div class="game-title"><h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2></div>
         <p><textarea v-model="editinggame.description"></textarea></p>     
           <input type="text" v-model="editinggame.image" placeholder="Lien vers l'image">
           <div>
@@ -34,7 +24,6 @@
           </div>
         </div>
       </div>
-      <!--end-->
     </game>
     </div>
 
@@ -42,14 +31,15 @@
               <div class="row">
                 <div class="pacmanimg" style="height:200px;"></div>
                 <comment v-for="comment in comments" :key="comment.id" class ="body" >
-                <div class="leftcolumn">
-                  <div class="card">
-                    <div class="comment-content" v-if="editinggame.id !== comment.id">
-                        <p>{{ comment.title }}</p><br></div>
-                        <p> Rate : {{comment.rate}} </p>
-                      <p>{{ comment.description }}</p>
+                  <div class="leftcolumn">
+                    <div class="card">
+                      <div class="comment-content">
+                          <p>User : {{ comment.pseudo }} said </p></div>
+                          <p>{{ comment.title }}</p><br>
+                          <p> Rate : {{comment.rate}} </p>
+                       <p>{{ comment.description }}</p>
                   </div>
-                  </comment>
+                </comment>
                   <form @submit.prevent="addcomment">
                     <h2>Comment</h2>
                     <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
@@ -58,9 +48,6 @@
                     <button type="submit">Publish</button>
                   </form>
                </div>
- 
-
-
 
     <div class="rightcolumn">
         <div class="card">
@@ -79,11 +66,8 @@
                             <h3>Follow Me</h3>
                             <p>Some text..</p>
                         </div>
-                    </div>
-                </div>
-                
-
- <!-- </div>-->
+    </div>
+</div>
 </template>
 
 <script>
