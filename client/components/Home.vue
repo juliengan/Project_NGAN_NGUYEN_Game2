@@ -12,13 +12,12 @@
       <!--Content-->
       <div class="game-content" v-if="editinggame.id !== game.id">
         <div class="game-title">
-          <h2>{{ game.title }}</h2><br>
+          <h2>{{ game.title }}</h2><br></div>
           <h3> Your best score : {{game.score}} points</h3>
           <div class ="boutons">
             <button >Play</button>
             <button>Rate</button>
           </div>
-        </div>
         <p>{{ game.description }}</p>
       </div>
 
@@ -43,15 +42,15 @@
 <div class="comments" >
 <comment v-for="comment in comments" :key="comment.id" class ="body" >
       <div id="pumpmyshopbag">
-      <div class="game-content" v-if="editinggame.id !== comment.id">
-        <div class="game-title">
+      <div class="comment-content" v-if="editinggame.id !== comment.id">
+        <div class="comment-title">
           <h2>{{ comment.title }}</h2><br>
           <h3> Rate : {{comment.rate}} </h3>
         </div>
         <p>{{ comment.description }}</p>
       </div>
-      <div class="game-content" v-else>
-        <div class="game-title">
+      <div class="comment-content" v-else>
+        <div class="comment-title">
           <h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2>
           
         </div>
@@ -116,16 +115,21 @@ $(".btn-group-lg").on("click", function() {
   display: flex;
   flex-wrap: wrap;
 }
+.comment-content h2,h3,p{
+  font-size: 20px;
+  font-family: 'OCR A';
+  text-shadow: 4px 3px 0px #1a2f80, 9px 8px 0px rgba(0,0,0,0.15);
+}
 
 comment{
   border-color : black;
   margin-bottom : 5px;
   padding : 5px;
-  border:solid white;
+  border:solid  #1a2f80;
   text-align : center;
 }
 
-h3,h2, p{
+.game-content h2, p{
   color:aliceblue
 }
 
@@ -213,7 +217,7 @@ game{
   border-color : black;
   margin-bottom : 5px;
   padding : 5px;
-  box-shadow: 8px 8px 12px rgb(54, 31, 31);
+  border:solid  #ced1dd;
   text-align : center;
   opacity: 0.5;
   }
