@@ -5,7 +5,7 @@
       <input placeholder="email" required>
       <input  placeholder="password" required>
       <input  placeholder="pseudo" required>
-      <button @click="addUser(email, password, pseudo)">Validate</button>
+      <button @click="addUser(email, password, pseudo)">Register</button>
     </form>
 <div>
     <h2>Already member</h2>
@@ -44,3 +44,13 @@ module.exports = {
   }
 }
 </script>
+
+<style scoped>
+*{
+    font-family : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+input,button,h2{
+  color:blanchedalmond;
+
+}
+</style>

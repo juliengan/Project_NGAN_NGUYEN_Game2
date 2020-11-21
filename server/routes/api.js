@@ -46,6 +46,7 @@ router.get('/register',(req,res) => {
 
 /*Cette route enregistre un nouveau joueur dans la bdd Game*/
 router.post('/register',async(req,res) => {
+  console.log("inside register post")
   const email = req.body.email
   const password = req.body.password
   const pseudo = req.body.pseudo
@@ -333,6 +334,7 @@ router.post('/comment', (req, res) => {
   const comment = {
     id: comments.length + 1,
     title: title,
+    //pseudo:pseudo,
     description: description,
     rate: rate
   }
