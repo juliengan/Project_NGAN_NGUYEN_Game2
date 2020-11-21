@@ -8,7 +8,6 @@
         <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
 
         <!--<link rel="stylesheet" href="/css/memory.css">-->
@@ -67,19 +66,11 @@
                 <router-view
                   :games="games"
                   :comments="comments"
-                  @add-user="addUser"
-                  @login-user="loginUser"
+                
                   @add-comment="addComment"
                   @delete-comment="deleteComment"
                   @update-comment="updateComment"
                   
-                  @start-game="startGame"
-                  @flip-card="flipCard"
-                  @not-match='notMatch'
-                  @match='match'
-                  @check-match='checkMatch'
-                  @reset-board='resetBoard'
-                  @random-cards='randomCards'
                 ></router-view>  
               </main>    
         <footer>
@@ -99,7 +90,7 @@
             function closeForm() {
             document.getElementById("myForm").style.display = "none";
             }
-            </script>
+        </script>
 
         <!--<div id="app">
           <header>

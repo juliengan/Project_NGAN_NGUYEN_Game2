@@ -99,11 +99,11 @@ var app = new Vue({
   data: {
     games: [],
     comments: [],
-    panier: {
+   /* panier: {
       createdAt: null,
       updatedAt: null,
       games: []
-    },
+    },*/
     isConnected:false
   },
   async mounted () {
@@ -133,126 +133,6 @@ var app = new Vue({
       await axios.delete('/api/comment/' + commentId)
       const index = this.comments.findIndex(a => a.id === commentId)
       this.comments.splice(index, 1)
-    },
-    /*async addToPanier(gameId){
-      console.log("adding game to panier")
-      const game ={
-          id: gameId,
-          quantity: 1
-      }
-      const res = await axios.post('/api/panier', game)
-      this.panier.games.push(res.data)
-      console.log("game added to panier")
-    },
-    async removeFromPanier(gameId){
-      console.log("deleting the game")
-      await axios.delete('/api/panier/' + gameId)
-      const index = this.panier.games.findIndex(a => a.id === gameId)
-      this.panier.games.splice(index, 1) //supprime un élément à partir de l'index
-      console.log("game deleted from the shopbag")
-      
-    },
-    async putToPanier(gameId, quantity){
-      const res = await axios.put('/api/panier/'+ gameId, {quantity: quantity})
-      this.panier = res.data
-    },*/
-    async addUser(email, password, pseudo){
-      console.log("registering")
-      await axios.post('/api/register' + email + password + pseudo)
-      console.log("successfully registered")
-    },
-    async loginUser(email, password, pseudo){
-      console.log("login in process")
-      await axios.post('/api/login' + email + password + pseudo)
-      console.log("successfully logged in")
-    },
-
-    //memory
-    async startGame(){
-      document.getElementById("board").style.visibility="visible";
-	  document.getElementById("game-info").style.visibility="visible";
-	  var timing = setInterval(function function1(){ 
-	  document.getElementById("timer").innerHTML = count + "&nbsp" + "seconds";
-
-	  count--;
-		  if(count <= 0){	
-		    clearInterval(timing);
-			  document.getElementById("timer").innerHTML = "Time is up!"
-			  alert("Too late !");
-			  location.reload();
-	    }
-	  }, 1000);
-      },
-    async flipCard(){
-      let flippedCard = false;
-      let firstCard, secondCard;
-      if (lockBoard===true)return;
-	if (this === firstCard) return;
-	this.classList.add('flip');
-
-	if (!flippedCard) {
-	//firstClick
-	 flippedCard = true;
-	 firstCard = this;
-	 return;
-	}
-
-	//Second clicked
-	secondCard = this;
-
-	checkMatch();
-    },
-    async checkMatch(count){
-      //do cards match ?
-	if (firstCard.getAttribute('data-nb') === secondCard.getAttribute('data-nb')) {
-		//it is a match
-		match();
-		nbmatch++;
-	  	if (nbmatch === 6) {
-	  		alert("Congratulations ! You have matched all the images");
-	  		location.reload();
-	  	}
-	  	
-	}
-	else{
-		//not a match
-		notMatch();
-	}
-    },
-    match(){
-      firstCard.removeEventListener('click', flipCard);
-  	secondCard.removeEventListener('click', flipCard);
-
-  	resetBoard();
-    },
-    notMatch(){
-      let lockBoard = false;
-      lockBoard = true;
-	//the cards will be unfliped
-	setTimeout(() =>{
-	  	firstCard.classList.remove('flip');
-	  	secondCard.classList.remove('flip');
-	  	resetBoard();
-  	}, 1300);
-    },
-    resetBoard(){
-      let flippedCard
-      let lockBoard
-      let firstCard
-      let secondCard
-      flippedCard = false;
-	lockBoard = false;
-	firstCard=null;
-	secondCard= null;
-    },
-    randomCards(){
-      cards.forEach(card => {
-        //get the random number
-        let ramdomPos = Math.floor(Math.random() * 12);
-        card.style.order = ramdomPos;
-      });
     }
-
-
-   }
+  }
 })

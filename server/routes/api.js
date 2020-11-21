@@ -5,6 +5,7 @@ const comments = require('../data/comments.js')
 
 const bcrypt = require('bcrypt')
 const { Client } = require('pg')
+const { values } = require('../data/games.js')
 
 
 const client = new Client({
@@ -15,6 +16,7 @@ const client = new Client({
  database: 'Game2'
 })
 
+const player = []
 client.connect()
 
 client.query('SELECT * from player', (err,res)=>{
@@ -44,31 +46,7 @@ router.get('/register',(req,res) => {
   res.render("get request successfully executed")
 })
 
-/*Cette route enregistre un nouveau joueur dans la bdd Game*/
-router.post('/register',async(req,res) => {
-  console.log("inside register post")
-  const email = req.body.email
-  const password = req.body.password
-  const pseudo = req.body.pseudo
- // const score = 0
-  console.log("info well received, let's register")
-  const sql = 'SELECT * FROM player WHERE pseudo= $1 AND email=$2'
-  console.log("inside the database : selection successfully done")
-  var result = await client.query({
-    text: sql,
-    values: [pseudo, email]
-  })
-  console.log("let's hash the password")
-    const hash = await bcrypt.hash(password, 10) //hash le mot de passe
-    const new_sql = 'INSERT INTO player values($1,$2,$3)'
-    console.log("insertion successfully done")
-    await client.query({
-      text:new_sql,
-      values:[pseudo, email, hash]  
-  })
-  console.log('Successfully registered : ',result.rows)
 
-})
 
 /**Cette route permet à l'utisateur de se connecter */
 router.post('/login',async(req,res) =>{
@@ -120,7 +98,35 @@ router.get('/me',async(req,res) =>{
   }*/
 })
 
+/**register*/
+router.post('/register', async (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
 
+  const result = await client.query({
+    text: 'SELECT * FROM player WHERE email=$1',
+    values: [email]
+  })
+
+  if (result.rows.length > 0) {
+    res.status(401).json({
+      message: 'user already exists'
+    })
+    return
+  }
+  // si on a pas trouvé l'utilisateur
+  // alors on le crée
+
+  const hash = await bcrypt.hash(password, 10)
+
+  await client.query({
+    text: `INSERT INTO player(email, password)
+    VALUES ($1, $2)
+    `,
+    values: [email, hash]
+  })
+  res.send('ok')
+})
 
 /**
  * Notre mécanisme de sauvegarde des paniers des utilisateurs sera de simplement leur attribuer un panier grâce à req.session, sans authentification particulière
