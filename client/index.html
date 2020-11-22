@@ -20,14 +20,15 @@
                 <h1 >Game & Chill</h1>
                 <p>welcome to the retro game center <br /> if you like retro games do not hesitate to create an account and play with your friends</p>
             </div>
+            <div class="centernav">
             <div class="topnav">    
                 <router-link to='/memory'>Memory</router-link>
                 <a href="#contact">Reviews</a>
                 <router-link to='/pacman'>Pacman</router-link>
                 <router-link to='/'>Home</router-link>
-                <router-link to='/register'>Register</router-link>
+                <router-link to='/register'>Account</router-link>
     
-                
+                </div>
             </div>
     
     
@@ -86,12 +87,13 @@
 
 <style>
 
-    .center{
+    .center,.centernav{
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
     }
+    
   * {
         box-sizing: border-box;
         background-color: black;
