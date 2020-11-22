@@ -20,7 +20,6 @@
 
 <!--comments-->
               <div class="row">
-                
                 <div class="pacmanimg" style="height:200px;"></div>
                 <comment v-for="comment in comments" :key="comment.id" class ="body" >
                   <div class="leftcolumn">
@@ -97,6 +96,7 @@ $(".btn-group-lg").on("click", function() {
 </script>
 
 <style scoped>
+
 /*test comments template thao*/
 /* Create two unequal columns that floats next to each other */
     /* Left column */
@@ -125,8 +125,9 @@ $(".btn-group-lg").on("click", function() {
         opacity: 0.6;
         filter: alpha(opacity=40);
         width: 100%;
-        padding: 20px;
     }
+    
+
 
     /* Add a card effect for articles */
     .card {
@@ -152,6 +153,19 @@ input,textarea{
   display: flex;
   flex-wrap: wrap;
 }
+
+.games{
+  width:100%;
+  height:100%;
+  margin:10px 20px 20px;
+
+}
+
+.games game:hover{
+  z-index: 1;
+}
+
+
 comment{
    border:solid  #1a2f80;
 }
@@ -254,14 +268,17 @@ opacity: 1;
 game{
   border-color : black;
   margin-bottom : 5px;
-  padding : 5px;
-  border:solid  #ced1dd;
+  /*padding : 5px;*/
   text-align : center;
-  opacity: 0.5;
+  font-family: 'OCR A';
+ 
+
+  border-radius: 10% 30% 50% 70%;  
+  padding : 9px;
   }
-  game:hover{
+  /*game:hover{
     opacity: 0.9;
-  }
+  }*/
 .boutons{
 display : flex;
 flex-direction : column 
@@ -280,28 +297,36 @@ border: 2px solid white;
   margin-right : auto;
 }
 button:hover{
-background-color: #6d1500;
-        color: #ed2794;
-        border-color: #9f2407;
-        color: white;
-        transition: all 1s ease-out;
+  background-color: #6d1500;
+  color: #ed2794;
+  border-color: #9f2407;
+  color: white;
+  transition: all 1s ease-out;
 }
 
 #pumpmyshopbag{
-   
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    /*height: 300px;
-    width: 300px;
-  */}
+  /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #1a2f80;
+  border : solid;
+  border-style : dashed;*/
+  padding : 2px;
+  border-radius: 10% 30% 50% 70%;  
+  }
 
 .game-img {
   flex: 1;
  margin-left: auto;
     margin-right: auto;
+    opacity:0.5;
+    
+}
+.game-img:hover{
+  opacity: 0.9;
 }
 
 .game-img div {
-  width: 200px;
+border-radius: 10% 30% 50% 70%;  
+width: 200px;
   height: 200px;
   background-size: cover;
    margin-left: auto;
@@ -311,6 +336,8 @@ background-color: #6d1500;
 .game-content {
   flex: 3;
   text-align : center;
+  border-radius: 10% 30% 50% 70%;  
+
 
 }
 

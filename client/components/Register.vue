@@ -3,15 +3,16 @@
     <h2>Register</h2>
     <form @submit.prevent="addUser()">
       <input v-model="email" placeholder="email">
+      <input v-model="pseudo" placeholder="pseudo">
       <input type="password" v-model="password" placeholder="password">
-      <button type="submit">Se créer un compte</button>
+      <button type="submit">Create account</button>
     </form>
-<div>
-    <h2>Already member</h2>
-    <form>
-      <input placeholder="email/pseudo" required>
-      <input  placeholder="password" required>
-      <button>Login</button>
+
+    <h2>Already member ?</h2>
+    <form @submit.prevent="loginUser()">
+      <input v-model="email" placeholder="email">
+      <input type="password" v-model="password" placeholder="password">
+      <button type="submit">Login</button>
     </form>
 </div>
 </template>
@@ -25,8 +26,8 @@ module.exports = {
   data () {
     return {
       email:'',
-      password:''
-     // pseudo:"",
+      password:'',
+      pseudo:''
       //isConnected:false
     }
   },
@@ -36,14 +37,19 @@ module.exports = {
     async addUser () {
     await axios.post('/api/register', {
         email: this.email,
-        password: this.password
+        password: this.password,
+        pseudo: this.pseudo
       })
       this.$router.push('/')
     },
-    /*loginUser (email, password, pseudo) {
-      this.$emit('login-user',email,password, pseudo)
-    }*/
-    
+    async loginUser() {
+      await axios.post('/api/login', {
+        email: this.email,
+        password: this.password,
+        pseudo: this.pseudo
+      })
+      this.$router.push('/')
+    }
   }
 }
 </script>
