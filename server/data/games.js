@@ -16,7 +16,7 @@ const games = [
   {
     id: 3,
     name: 'Bubble Shooter',
-    description: 'Allez au bout du monde avec ce magnifique vélo',
+    description: 'Shoot all he bubbles :)',
     image: 'https://images-eu.ssl-images-amazon.com/images/I/71OSct-a52L.png',
     score: 150
   },

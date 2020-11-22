@@ -27,17 +27,14 @@
           <div class="comment-content" v-if="editinggame.id !== comment.id">
             <p>User : {{ comment.pseudo }} said about {{ comment.title }} game :<p>{{ comment.description }}</p>
             <p> Rate : {{comment.rate}} </p></div>
-          <div>
-          <button @click="deleteComment(comment.id)">Delete</button>
-          <button @click="editComment(comment)">Edit</button>
+            <button @click="deleteComment(comment.id)">Delete</button>
+            <button @click="editComment(comment)">Edit</button>
           </div>
-          <div class="comment-content" v-else>
-            <div class="comment-title"><h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2><div>
+          <div class="comment-content" >
+            <div class="comment-title"><h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2></div>
             <button @click="sendEditComment()">Validate</button>
             <button @click="abortEditComment()">Cancel</button>
-            <p><textarea v-model="editinggame.description"></textarea></p>
-          </div>
-        </div>
+            <p><textarea v-model="editinggame.description"></textarea></p> 
         </div>
       </div>
     </comment>
@@ -89,7 +86,7 @@ module.exports = {
       },
       editinggame: {
         id: -1,
-        pseudo:'',
+        //pseudo:'',
         title: '',
         description: '',
         rate: 0
@@ -108,9 +105,9 @@ module.exports = {
       this.editinggame.title = comment.title
       this.editinggame.description = comment.description
       this.editinggame.rate = comment.rate
-    }/*,
+    },
     sendEditComment () {
-      this.$emit('update-comment', this.editinggame)
+      this.$emit('edit-comment', this.editinggame)
       this.abortEditcomment()
     },
     abortEditComment () {
@@ -119,17 +116,11 @@ module.exports = {
         title: '',
         description: '',
         rate: 0
-      }*/
-
-/*
-    this.$emit("#tohide").hide();
-$(".btn-group-lg").on("click", function() {
-   var target = $(this).data("target");
-   if(target!==undefined) $(target).toggle();
-});*/
+      }
     
     }
   }
+}
 
 </script>
 
