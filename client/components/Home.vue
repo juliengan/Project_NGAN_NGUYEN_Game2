@@ -19,26 +19,38 @@
     </div>
 
 <!--comments-->
-              <div class="row">
-                <div class="pacmanimg" style="height:200px;"></div>
-                <comment v-for="comment in comments" :key="comment.id" class ="body" >
-                  <div class="leftcolumn">
-                    <div class="card">
-                     <div class="comment-content">
-                          <p>User : {{ comment.pseudo }} said about {{ comment.title }} game :<p>{{ comment.description }}</p>
-                          <p> Rate : {{comment.rate}} </p></div>
-                  </div>
+<div class="row">
+  <div class="pacmanimg" style="height:200px;"></div>
+    <comment v-for="comment in comments" :key="comment.id" class ="body" >
+      <div class="leftcolumn">
+        <div class="card">
+          <div class="comment-content" v-if="editinggame.id !== comment.id">
+            <p>User : {{ comment.pseudo }} said about {{ comment.title }} game :<p>{{ comment.description }}</p>
+            <p> Rate : {{comment.rate}} </p></div>
+          <div>
+          <button @click="deleteComment(comment.id)">Delete</button>
+          <button @click="editComment(comment)">Edit</button>
+          </div>
+          <div class="comment-content" v-else>
+            <div class="comment-title"><h2><input type="text" v-model="editinggame.title"> - <input type="number" v-model="editinggame.rate"></h2><div>
+            <button @click="sendEditComment()">Validate</button>
+            <button @click="abortEditComment()">Cancel</button>
+            <p><textarea v-model="editinggame.description"></textarea></p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </comment>
+    <form @submit.prevent="addComment()">
+      <h2>Comment</h2>
+      <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
+      <input type="number" v-model="newcomment.rate" placeholder="Rate over 6" required>
+      <textarea type="text" v-model="newcomment.description" required></textarea>
+      <button type="submit">Publish</button>
+    </form>
+    
+</div>
                   
-                </comment>
-                
-                  <form @submit.prevent="addComment">
-                    <h2>Comment</h2>
-                    <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
-                    <input type="number" v-model="newcomment.rate" placeholder="Rate over 6" required>
-                    <textarea type="text" v-model="newcomment.description" required></textarea>
-                    <button type="submit">Publish</button>
-                  </form>
-               </div>
 
     <div class="rightcolumn">
         <div class="card">
@@ -88,7 +100,7 @@ module.exports = {
     addComment(){
       this.$emit('add-comment',this.newcomment)
     },
-    /*deleteComment (comment) {
+    deleteComment (commentId) {
       this.$emit('delete-comment', commentId)
     },
     editComment (comment) {
@@ -96,7 +108,7 @@ module.exports = {
       this.editinggame.title = comment.title
       this.editinggame.description = comment.description
       this.editinggame.rate = comment.rate
-    },
+    }/*,
     sendEditComment () {
       this.$emit('update-comment', this.editinggame)
       this.abortEditcomment()

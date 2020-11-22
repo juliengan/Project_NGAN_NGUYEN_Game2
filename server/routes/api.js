@@ -189,7 +189,7 @@ function parsegame (req, res, next) {
   req.commentId = commentId
 
   const comment = comments.find(a => a.id === req.commentId)
-  if (!game) {
+  if (!comment) {
     res.status(404).json({ message: 'comment ' + commentId + ' does not exist' })
     return
   }

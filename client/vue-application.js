@@ -114,7 +114,7 @@ var app = new Vue({
       const res = await axios.post('/api/comment', comment)
       this.comments.push(res.data)
     },
-    async updateComment (newcomment) {
+    async editComment (newcomment) {
       await axios.put('/api/comment/' + newcomment.id, newcomment)
       const comment = this.comments.find(a => a.id === newcomment.id)
       comment.title = newcomment.title
