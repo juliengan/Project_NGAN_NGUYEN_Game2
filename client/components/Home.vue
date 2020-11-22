@@ -28,8 +28,10 @@
                           <p>User : {{ comment.pseudo }} said about {{ comment.title }} game :<p>{{ comment.description }}</p>
                           <p> Rate : {{comment.rate}} </p></div>
                   </div>
+                  
                 </comment>
-                  <form @submit.prevent="addcomment">
+                
+                  <form @submit.prevent="addComment">
                     <h2>Comment</h2>
                     <input type="text" v-model="newcomment.title" placeholder="Title your comment" required>
                     <input type="number" v-model="newcomment.rate" placeholder="Rate over 6" required>
@@ -68,7 +70,7 @@ module.exports = {
   data () {
     return {
       newcomment: {
-        pseudo:'',
+       // pseudo:'',
         title: '',
         description: '',
         rate: 0
@@ -83,6 +85,30 @@ module.exports = {
     }
   },
   methods: {
+    addComment(){
+      this.$emit('add-comment',this.newcomment)
+    },
+    /*deleteComment (comment) {
+      this.$emit('delete-comment', commentId)
+    },
+    editComment (comment) {
+      this.editinggame.id = comment.id
+      this.editinggame.title = comment.title
+      this.editinggame.description = comment.description
+      this.editinggame.rate = comment.rate
+    },
+    sendEditComment () {
+      this.$emit('update-comment', this.editinggame)
+      this.abortEditcomment()
+    },
+    abortEditComment () {
+      this.editinggame = {
+        id: -1,
+        title: '',
+        description: '',
+        rate: 0
+      }*/
+
 /*
     this.$emit("#tohide").hide();
 $(".btn-group-lg").on("click", function() {

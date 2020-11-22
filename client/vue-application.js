@@ -99,11 +99,6 @@ var app = new Vue({
   data: {
     games: [],
     comments: [],
-   /* panier: {
-      createdAt: null,
-      updatedAt: null,
-      games: []
-    },*/
     isConnected:false
   },
   async mounted () {
@@ -112,9 +107,6 @@ var app = new Vue({
 
     const res2 = await axios.get('/api/comments')
     this.comments = res2.data
-    /*const res2 = await axios.get('/api/panier')
-    this.panier = res2.data*/
-    //const res3 = await axios.get('/api/register')
   },
  
   methods: {
