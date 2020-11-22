@@ -62,9 +62,13 @@ module.exports = {
 *{
     font-family : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-input,button,h2{
+input,button{
   background-color:#111;
   color:blanchedalmond;
 
+}
+
+h2{
+  text-shadow: 4px 3px 0px #85864d, 9px 8px 0px rgba(0,0,0,0.15);
 }
 </style>
