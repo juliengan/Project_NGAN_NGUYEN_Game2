@@ -5,6 +5,7 @@
       <input v-model="email" placeholder="email">
       <input v-model="pseudo" placeholder="pseudo">
       <input type="password" v-model="password" placeholder="password">
+      <br><br>
       <button type="submit">Create account</button>
     </form>
 
@@ -12,7 +13,8 @@
     <form @submit.prevent="loginUser()">
       <input v-model="email" placeholder="email">
       <input type="password" v-model="password" placeholder="password">
-      <button type="submit">Login</button>
+      <br><br>
+      <button type="submit">Connection</button>
     </form>
 </div>
 </template>

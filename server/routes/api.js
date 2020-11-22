@@ -50,43 +50,38 @@ router.get('/register',(req,res) => {
 
 /**Cette route permet à l'utisateur de se connecter */
 router.post('/login',async(req,res) =>{
-  console.log("begin your authentification")
   const email = req.body.email
   const password = req.body.password
   const pseudo = req.body.pseudo
-  var id = null
-  var hash_pw = null
-  const sql = 'SELECT * FROM player WHERE email=$1 AND password=$2 AND pseudo=$3'
-  console.log("let's check if you are registered:")
   var result = await client.query({
-    text: sql,
-    values: [email, password, pseudo]
+    text: 'SELECT * FROM player WHERE email=$1',
+    values: [email]
   })
 
-  console.log("let's check if you are registered:before if")
-  const hash = await bcrypt.hash(password, 10) //hash le mot de passe
-  console.log(password, hash)
-  if(await bcrypt.compare(password, hash)){ 
-    console.log("we found you")
-    this.isConnected = true
-    //req.session.userId = 
-    //console.log(id)
-    } 
-  else {
-    console.log("Wrong authentification")
-    res.json.status(401)({message:'Wrong authentification'})
+  if (result.rows.length === 0) {
+    res.status(401).json({
+      message: 'user doesnt exist'
+    })
+    return
   }
+  // creates a user if he/she doesn't exist yet
+  const user = result.rows[0]
 
-  const sql2 = 'SELECT * FROM player WHERE id=$1'
-  console.log("let's check if you are registered:userId")
-  const result2 = await client.query({
-    text: sql2,
-    values: [req.session.userId]
-  })
-  
-  console.log('Successfully registered : ',result.rows)
-  //console.log('Successfully registered : ',result2.rows)
-})
+  if (await bcrypt.compare(password, user.password)) {
+    // alors connecter l'utilisateur
+    req.session.userId = user.id
+    res.json({
+      id: user.id,
+      email: user.email
+    })
+  } else {
+    res.status(401).json({
+      message: 'bad password'
+    })
+    return
+  }
+})  
+
 
 /**Cette route  retourne
 simplement l’utilisateur actuellement connecté
@@ -102,6 +97,7 @@ router.get('/me',async(req,res) =>{
 router.post('/register', async (req, res) => {
   const email = req.body.email
   const password = req.body.password
+  const pseudo = req.body.pseudo
 
   const result = await client.query({
     text: 'SELECT * FROM player WHERE email=$1',
