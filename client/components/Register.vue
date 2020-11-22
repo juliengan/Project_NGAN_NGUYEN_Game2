@@ -1,7 +1,8 @@
 <template>
-<div>
-    <h2>Register</h2>
-    <form @submit.prevent="addUser()">
+<div class="center">
+  <div class="topnav">
+    <h2>Register</h2><br>
+    <form @submit.prevent="addUser()" class="form-container">
       <input v-model="email" placeholder="email">
       <input v-model="pseudo" placeholder="pseudo">
       <input type="password" v-model="password" placeholder="password">
@@ -10,12 +11,13 @@
     </form>
 
     <h2>Already member ?</h2>
-    <form @submit.prevent="loginUser()">
+    <form @submit.prevent="loginUser()" class="form-container">
       <input v-model="email" placeholder="email">
       <input type="password" v-model="password" placeholder="password">
       <br><br>
       <button type="submit">Connection</button>
     </form>
+  </div>
 </div>
 </template>
 
