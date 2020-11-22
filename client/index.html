@@ -20,42 +20,14 @@
                 <h1 >Game & Chill</h1>
                 <p>welcome to the retro game center <br /> if you like retro games do not hesitate to create an account and play with your friends</p>
             </div>
-            <div class="topnav">
-                <button class="open-button" style="float : right"  onclick="openForm()">Register</button>
-    
-                <div class="form-popup" id="myForm">
-    
-                    <form action="/action_page.php" class="form-container">
-                        <h1>Register</h1>
-    
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Enter Email" name="email" required>
-    
-                        <label for="psw"><b>Pseudo</b></label>
-                        <input type="password" placeholder="Enter Password" name="pseudo" required>
-    
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="password" required>
-    
-                        <button type="submit" class="btn">Register</button>
-                        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                    </form>
-    
-                </div>
-            
+            <div class="topnav">    
                 <router-link to='/memory'>Memory</router-link>
                 <a href="#contact">Reviews</a>
                 <router-link to='/pacman'>Pacman</router-link>
                 <router-link to='/'>Home</router-link>
                 <router-link to='/register'>Register</router-link>
     
-                <div class="login-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Pseudo" name="username">
-                        <input type="text" placeholder="Password" name="psw">
-                        <button type="submit" >Login</button>
-                    </form>
-                </div>
+                
             </div>
     
     
@@ -105,39 +77,7 @@
             }
         </script>
 
-        <!--<div id="app">
-          <header>
-            <h1>Game and chill</h1>
-            <div class="topnav">
-              <router-link to='/'><a class="active">Home</a></router-link>
-              <router-link to='/register'><a class="active">Register</a></router-link>
-              <div class="login-container">
-                  <form action="/action_page.php">
-                      <input type="text" placeholder="Pseudo" name="username">
-                      <input type="text" placeholder="Password" name="psw">
-                      <button type="submit">Login</button>
-                  </form>
-              </div>
-          </div>
-            
-          </header>
-          <!--<body>-->
-            <!--Memory-->
-            <!--<div id="app">
-              <div class="row">
-                  <div class="col-md-6 col-lg-6 col-xl-5 mx-auto">
-                       <div class="row justify-content-md-center">
-                        <div v-for="card in memoryCards" class="col-auto mb-3 flip-container" :class="{ 'flipped': card.isFlipped }" @click="flipCard(card)">
-                              <div class="memorycard">
-                                  <div class="front border rounded shadow"><img width="100" height="150" src="/assets/images/memorycard/pattern3.jpeg" alt=""></div>
-                                  <div class="back rounded border"><img width="100" height="150" :src="'/assets/images/memorycard/'+card.img" alt=""></div>
-                              </div>
-                           </div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-          </body>-->
+       
         
         <script src="/vue-application.js"></script>
        

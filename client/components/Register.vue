@@ -63,6 +63,7 @@ module.exports = {
     font-family : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 input,button,h2{
+  background-color:#111;
   color:blanchedalmond;
 
 }
